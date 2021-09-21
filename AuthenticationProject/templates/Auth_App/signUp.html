@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends 'Auth_App/base.html' %}
+
+    {% block content %}
+    <div style="width: 600px; margin: 50px auto;">
+        {% if message %}
+        <div style="padding: 15px 20px; color: #155724; background-color: #d4edda; border-color: #c3e6cb; height: 30px; font-size: 17px;">
+            <span style="color: white; background-color: #155724; border-radius: 50px; padding: 1px 7px;">Success</span>
+            <span style="margin-left: 15px;">{{message}}</span>
+        </div>
+        {% endif %}
+        <h2>Signup Form</h2>
+        <form action="{% url 'signUp' %}" style="border:1px solid #ccc" method="POST">
+            {% csrf_token %}
+            <div class="container">
+                {% for field in form %}
+                    <div style="margin-top: 15px;">
+                        <label><b>{{ field.label_tag }}</b></label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <small style="color: red; margin-top: -10px;">{{ error }}</small>
+                        {% endfor %}
+                        {% if field.help_text %}
+                            <div style="background-color: rgb(168, 168, 168);">
+                                <small style="color: black;">{{ field.help_text }}</small>
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+    
+                <div class="clearfix">
+                    <button type="submit" class="signupbtn">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+        
+
+    {% endblock %}   

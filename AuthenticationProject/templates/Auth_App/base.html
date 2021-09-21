@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}" class="active">Assignment</a></li> 
+            
+            {% if user.is_authenticated %}
+                <li style="float:right"><a class="" href="{% url 'logout' %}">LogOut</a></li>
+            {% else %}
+                <li style="float:right"><a class="" href="{% url 'login' %}">Log In</a></li>
+
+                
+            {% endif %}
+            <li style="float:right"><a class="" href="{% url 'signUp' %}">Sign Up</a></li>
+          </ul>
+
+    </nav>    
+        
+    {% block content %}
+    
+    {% endblock %}
+    <script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+    {% block script %}{% endblock script %} 
+</body>
+</html>
